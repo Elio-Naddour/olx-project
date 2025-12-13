@@ -1,0 +1,48 @@
+.searchSelect {
+  position: relative;
+  width: 100%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding-inline: 10px;
+  padding-block: 5px;
+
+}
+
+.searchSelectWrapper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchSelectInput {
+  width: 100%;
+  padding: 8px;
+  border: 0;
+  outline: none;
+}
+
+.searchSelectList {
+  position: absolute;
+  z-index: 10;
+  background: white;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 5px;
+  margin-inline-start: -10px;
+}
+
+.searchSelectItem {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.searchSelectItem:hover {
+  background: #f0f0f0;
+}
+
+.searchSelectEmpty {
+  padding: 8px;
+  color: #999;
+}

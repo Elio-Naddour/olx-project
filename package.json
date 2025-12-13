@@ -9,17 +9,25 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.11.1",
+    "axios": "^1.13.2",
+    "i18next": "^25.7.2",
+    "next": "15.5.9",
+    "next-i18next": "^15.4.3",
+    "next-redux-wrapper": "^8.1.0",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.9"
+    "react-i18next": "^16.5.0",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-redux": "^7.1.34",
     "eslint": "^9",
     "eslint-config-next": "15.5.9",
-    "@eslint/eslintrc": "^3"
+    "typescript": "^5"
   }
 }
