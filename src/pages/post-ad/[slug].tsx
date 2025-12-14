@@ -4,9 +4,12 @@ import { useGetCategoryFieldsQuery } from "@/store/api/olxApi";
 import DynamicCategoryForm from "@/components/organisms/DynamicCategoryForm/DybamicCategoryForm";
 import { useSelector } from "react-redux";
 import type { AppState } from "@/store";
+import { useI18n } from "@/i18n";
+import LoadingSpinner from "@/components/atoms/LoadingSpinner/LoadingSpinner";
 
 const PostAdByCategory: NextPage = () => {
   const router = useRouter();
+  const { t } = useI18n();
   const { slug } = router.query;
   const { data, error, isLoading } = useGetCategoryFieldsQuery({
     slug: (slug as string) ?? "",
@@ -14,23 +17,20 @@ const PostAdByCategory: NextPage = () => {
   const names = useSelector((state: AppState) => state.category);
 
   // Router is not ready on first render
-  if (!router.isReady) {
-    return <p>Loading...</p>;
+  if (!router.isReady || isLoading) {
+    return <LoadingSpinner />;
   }
 
   // Safety check
   if (!slug || typeof slug !== "string") {
-    return <p>Invalid category</p>;
+    return <p>{t('InvalidCategory')}</p>;
   }
 
-  return (
-    <div style={{ padding: 24 }}>
-      <h1>Post an Ad</h1>
+  if (error) return <div>{t('ApiError')}</div>;
 
-      <p>
-        Selected category slug:
-        <strong style={{ marginLeft: 8 }}>{slug}</strong>
-      </p>
+  return (
+    <div className="pageSpacing">
+      <h1>{t("postAnAd")}</h1>
 
       {data && <DynamicCategoryForm category={data} cardNames={names} />}
     </div>

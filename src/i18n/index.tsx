@@ -7,6 +7,7 @@ import {
 } from "react";
 import en from "./en";
 import ar from "./ar";
+import { useRouter } from "next/navigation";
 
 type Lang = "en" | "ar";
 const dict = { en, ar };
@@ -19,8 +20,20 @@ interface I18nContextType {
 
 const I18nContext = createContext<I18nContextType>(null!);
 
+let currentLang: Lang = "en";
+
+export const setCurrentLang = (lang: Lang) => {
+  currentLang = lang;
+};
+
+export const getCurrentLang = (): Lang => {
+  return currentLang;
+};
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("en");
+  const router = useRouter();
+
+  const [lang, setLang] = useState<Lang>(currentLang);
 
   useEffect(() => {
     const saved = localStorage.getItem("lang") as Lang;
@@ -31,11 +44,16 @@ export function I18nProvider({ children }: { children: ReactNode }) {
     const next = lang === "en" ? "ar" : "en";
     setLang(next);
     localStorage.setItem("lang", next);
+    router.refresh();
   };
 
   const t = (key: keyof typeof en) => {
     return dict[lang][key] ?? key;
   };
+
+  useEffect(() => {
+    setCurrentLang(lang);
+  }, [lang]);
 
   return (
     <I18nContext.Provider value={{ lang, t, switchLang }}>

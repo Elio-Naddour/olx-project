@@ -1,9 +1,7 @@
 .form {
-  margin: auto;
   border: 0.5px solid grey;
   border-radius: 8px;
   padding: 20px;
-  width: 80%;
   display: flex;
   flex-direction: column;
 }
@@ -27,4 +25,22 @@
   margin-top: 10px;
   padding: 10px 16px;
   align-self: flex-end;
+  cursor: pointer;
+}
+
+.checkboxs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+  gap: 0.4rem;
+}
+.checkboxInput {
+  accent-color: black;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+.checkboxLabel{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

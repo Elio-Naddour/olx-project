@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 
 import styles from "./CategoriesList.module.css";
 import { setSelectedCategory } from "@/store/slices/categorySlice";
+import { routeNames } from "@/utils/routeNames";
 
 export default CategoriesList;
 interface Props {
@@ -16,7 +17,9 @@ const hasChildren = (cat: Category) =>
   Array.isArray(cat.children) && cat.children.length > 0;
 
 export function CategoriesList({ categories, selectedCategory }: Props) {
-  const [selectedMain, setSelectedMain] = useState<Category | null>(selectedCategory);
+  const [selectedMain, setSelectedMain] = useState<Category | null>(
+    selectedCategory
+  );
   const [selectedSub, setSelectedSub] = useState<Category | null>(null);
   const dispatch = useDispatch();
 
@@ -39,7 +42,7 @@ export function CategoriesList({ categories, selectedCategory }: Props) {
                     selectedCategoryName: cat.name,
                   })
                 );
-                router.push(`/post-ad/${cat.slug}`);
+                router.push(`${routeNames.postAd}/${cat.slug}`);
               }
             }}
           >
@@ -66,7 +69,7 @@ export function CategoriesList({ categories, selectedCategory }: Props) {
                     selectedSubCategoryName: sub.name,
                   })
                 );
-                router.push(`/post-ad/${sub.slug}`);
+                router.push(`${routeNames.postAd}/${sub.slug}`);
               }
             }}
           >
@@ -91,7 +94,7 @@ export function CategoriesList({ categories, selectedCategory }: Props) {
                     selectedComplementaryCategoryName: child.name,
                   })
                 );
-                router.push(`/post-ad/${child.slug}`);
+                router.push(`${routeNames.postAd}/${child.slug}`);
               }
             }}
           >

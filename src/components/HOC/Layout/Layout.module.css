@@ -1,0 +1,8 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+.pages{
+  width: 80%;
+  margin: auto;
+}

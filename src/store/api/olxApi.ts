@@ -1,4 +1,3 @@
-// src/store/api/olxApi.ts
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "./axiosBaseQuery";
 import { CategoryFeild } from "@/types/categoryFeildsTypes";

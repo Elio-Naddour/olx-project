@@ -1,9 +1,15 @@
 const ar = {
-  home_title: "الإعلانات",
-  latest_ads: "أحدث الإعلانات",
-  post_ad: "أنشر إعلان",
-  choose_category: "اختر الفئة",
-  loading: "جاري التحميل..."
+  postAd: "أنشر إعلان",
+  chooseCategory: "اختر الفئة",
+  loading: "جاري التحميل...",
+  lang: "English",
+  sell: "يبيع",
+  postAnAd: "بيع إعلانك",
+  Category: "فئة",
+  UploadImages: "تحميل الصور",
+  Change: "تغير",
+  ApiError: "خطأ في واجهة برمجة التطبيقات",
+  InvalidCategory: "فئة غير صالحة",
 };
 
 export default ar;

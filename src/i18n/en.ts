@@ -1,9 +1,15 @@
 const en = {
-  home_title: "Classifieds",
-  latest_ads: "Latest Ads",
-  post_ad: "Post an Ad",
-  choose_category: "Choose a Category",
-  loading: "Loading..."
+  postAd: "Post an Ad",
+  chooseCategory: "Choose a Category",
+  loading: "Loading...",
+  lang: "العربية",
+  sell: "sell",
+  postAnAd: "Post an Ad",
+  Category: "Category",
+  UploadImages: "UploadImages",
+  Change: "Change",
+  ApiError: "Api Error",
+  InvalidCategory: "Invalid category",
 };
 
 export default en;

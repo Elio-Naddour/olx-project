@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import styles from "./ImageUploadGrid.module.css";
+import Image from "next/image";
+import CAMERA from "@/assets/icons/camera.svg";
 
 const MAX_IMAGES = 12;
 
@@ -62,7 +64,7 @@ export default function ImageUploadGrid() {
             ) : index === 0 ? (
               <span className={styles.plus}>+</span>
             ) : (
-              <span className={styles.camera}>📷</span>
+              <Image src={CAMERA} alt="CAMERA" className={styles.camera} />
             )}
           </div>
         ))}

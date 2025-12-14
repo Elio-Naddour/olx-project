@@ -13,9 +13,7 @@ import styles from "./DynamicCategoryForm.module.css";
 import ImageUploadGrid from "@/components/molecules/ImageUlpoadGrid/ImageUploadGrid";
 import CategoryCard from "@/components/atoms/CategoryCard/CategoryCard";
 import { CategoryState } from "@/store/slices/categorySlice";
-
-// --- Types (shortened imports assumed) ---
-// Using your provided interfaces: CategoryFeild, FlatField, ChildrenField, Choice, FilterType, ValueType
+import { useI18n } from "@/i18n";
 
 interface Props {
   category: CategoryFeild;
@@ -26,6 +24,7 @@ interface Props {
 const DynamicCategoryForm: React.FC<Props> = ({ category, cardNames }) => {
   const [values, setValues] = useState<Record<string, any>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const { t } = useI18n();
 
   const setValue = (key: string, value: any) => {
     setValues((prev) => ({ ...prev, [key]: value }));
@@ -69,8 +68,7 @@ const DynamicCategoryForm: React.FC<Props> = ({ category, cardNames }) => {
     choices: Choice[],
     filterType: FilterType
   ) => {
-
-    if (true || filterType === FilterType.SingleChoice) {
+    if (filterType === FilterType.SingleChoice) {
       return (
         <DropdownSelect
           choices={choices}
@@ -87,23 +85,28 @@ const DynamicCategoryForm: React.FC<Props> = ({ category, cardNames }) => {
         ? values[fieldKey]
         : [];
 
-      return choices?.map((c) => (
-        <label key={c.id} style={{ display: "block" }}>
-          <input
-            type="checkbox"
-            checked={current.includes(c.value)}
-            onChange={(e) => {
-              setValue(
-                fieldKey,
-                e.target.checked
-                  ? [...current, c.value]
-                  : current.filter((v) => v !== c.value)
-              );
-            }}
-          />
-          {c.label}
-        </label>
-      ));
+      return (
+        <div className={styles.checkboxs}>
+          {choices?.map((c) => (
+            <label key={c.id} className={styles.checkboxLabel}>
+              <input
+                className={styles.checkboxInput}
+                type="checkbox"
+                checked={current.includes(c.value)}
+                onChange={(e) => {
+                  setValue(
+                    fieldKey,
+                    e.target.checked
+                      ? [...current, c.value]
+                      : current.filter((v) => v !== c.value)
+                  );
+                }}
+              />
+              <div>{c.label}</div>
+            </label>
+          ))}
+        </div>
+      );
     }
 
     return null;
@@ -163,16 +166,18 @@ const DynamicCategoryForm: React.FC<Props> = ({ category, cardNames }) => {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <div className={styles.formRow}>
-        <label className={styles.formRowLabel}>Category</label>
+        <label className={styles.formRowLabel}>{t("Category")}</label>
         <CategoryCard
-          category={cardNames.selectedCategoryName ??''}
-          subCategory={cardNames.selectedSubCategoryName ??''}
-          complementaryCategory={cardNames.selectedComplementaryCategoryName ??''}
-          endComponent={<div>Change</div>}
+          category={cardNames.selectedCategoryName ?? ""}
+          subCategory={cardNames.selectedSubCategoryName ?? ""}
+          complementaryCategory={
+            cardNames.selectedComplementaryCategoryName ?? ""
+          }
+          endComponent={<div>{t("Change")}</div>}
         />
       </div>
       <div className={styles.formRow}>
-        <label className={styles.formRowLabel}>Upload Images</label>
+        <label className={styles.formRowLabel}>{t("UploadImages")}</label>
         <ImageUploadGrid />
       </div>
       {category.flatFields?.map((field) => (

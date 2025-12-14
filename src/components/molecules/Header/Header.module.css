@@ -1,0 +1,36 @@
+.headerContainer {
+  padding: 10px;
+  border-bottom: 1px solid grey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.headerSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.link {
+  border: 0;
+  background-color: transparent;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.langButton:hover {
+  color: #007aff;
+}
+.sellButton {
+  border: 0;
+  border-radius: 4rem;
+  background-color: #fcde68;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.reverse {
+  rotate: 180deg;
+}

@@ -1,4 +1,3 @@
-// src/pages/post-ad/index.tsx
 import Link from "next/link";
 import { useGetCategoriesQuery } from "@/store/api/olxApi";
 import { setSelectedCategory } from "@/store/slices/categorySlice";
@@ -6,18 +5,21 @@ import CategoriesList from "@/components/organisms/CategoriesList/CategoriesList
 import CategoriesCardList from "@/components/molecules/CategoriesCardsList/CategoriesCardList";
 import { useState } from "react";
 import { Category } from "@/types/categoryTypes";
-// import { useI18n } from "@/lib/useLocalI18n"; // optional helper for translations
+import { useI18n } from "@/i18n";
+import LoadingSpinner from "@/components/atoms/LoadingSpinner/LoadingSpinner";
 
 export default function PostAdIndex() {
   const { data, error, isLoading } = useGetCategoriesQuery();
   const [selectedCategory, setSelectedCategory] = useState<Category>();
-
-  if (isLoading) return <div>Loading categories...</div>;
-  if (error) return <div>Error loading categories</div>;
+  const { t } = useI18n();
+  if (isLoading) return <LoadingSpinner />;
+  if (error) return <div>{t('ApiError')}</div>;
 
   return (
-    <div>
-      <h1>Post an Ad</h1>
+    <div className="pageSpacing">
+      <h1>{t("postAd")}</h1>
+      <h2>{t("chooseCategory")}</h2>
+
       {data?.length > 0 && !selectedCategory && (
         <CategoriesCardList
           categories={data ?? []}
